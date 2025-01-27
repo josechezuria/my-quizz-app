@@ -1,7 +1,7 @@
 @import 'variables';
 
-
-.signup-page {
+// SIGN IN AND SIGN UP STYLE 
+.main-page {
     display: flex;
     display: flex;
     flex-direction: column; 
@@ -11,7 +11,7 @@
     background-color: $primary;
 
     
-        .content-box-signup {
+        .content-box {
             background-color: $h1-color;
             width: 440px;
             height: 385px;
@@ -20,7 +20,7 @@
             border: 2px solid none;
         }
     
-    .container-form-signup {
+    .container-form {
       display: flex;
       flex-direction: column;
       padding: 50px;
@@ -53,7 +53,7 @@
 
 
   @media (max-width: 620px) {
-    .signup-page {
+    .main-page {
       flex-direction: column; 
       justify-content: flex-end; /* Center content better for smaller screens */
       padding: 0 20px 20px 20px;
@@ -67,13 +67,13 @@
         justify-content: center;
     }
   
-      .content-box-signup {
+      .content-box {
         width: 90%; /* Make the container flexible for smaller screens */
         padding: 30px 20px;
         border-radius: 40px 40px 0 0; /* Reduce padding */
       }
   
-      .container-form-signup {
+      .container-form {
         padding: 20px; /* Reduce padding */
         
         input[name="email"], [name="psw"], [name="psw2"] {
@@ -93,7 +93,7 @@
   }
   
 
-  a {
+  a[href="/signup"], [href="/signin"] {
     color: white;
     text-decoration: none;
     font-size: 16px;
@@ -106,4 +106,58 @@
   a:hover {
     color: #f0f0f0;
     text-decoration: underline;
+  }
+
+
+  //INDEX STYLE
+
+  .body-index {
+    background-color: $background-color;
+    .container-welcome {
+        display: flex;
+        justify-content: space-between;
+        margin: 45px 45px 0 45px;
+
+        .h1-index {
+            font-family: $font-poppins;
+            font-size: 32px;
+            font-weight: bold;
+            line-height: 1.25;
+            color: $primary;
+
+                .p-index {
+                    font-family: $font-roboto;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    color: $primary;
+                    margin-top: 0;
+                    font-weight: normal;
+                    font-stretch: normal;
+                }
+        }
+       
+        .img-profile {
+            width: 77px;
+            height: 74px;
+            margin: 0 45px 97px 105px;
+            background-color: #4caf50;
+            border-radius: 100%;
+        }
+    }
+    .ranking-content {
+        display: flex;
+        .ranking-item {
+            width: 177px;
+            height: 78px;
+            border-radius: 9px;
+        }
+        .your {
+            background-color: #4caf50;
+        }
+
+        .global {
+            background-color: $secondary;
+        }
+    }
+
   }

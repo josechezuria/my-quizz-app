@@ -37,12 +37,12 @@ app.post("/", (req, res) => {
 
 app.post("/signup", (req, res) => {
   console.log(req.body);
-  res.redirect("/language-selection");
+  res.redirect("/index");
 });
 
 app.post("/signin", (req, res) => {
   console.log(req.body);
-  res.redirect("/language-selection");
+  res.redirect("/index");
 });
 
 app.listen(port, () => {
