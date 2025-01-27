@@ -1,34 +1,109 @@
 @import 'variables';
 
-h1 {
-    font-family: $font-poppins;
-    font-size: $h1-font-size;
-    font-weight: $h1-font-weight;
-    line-height: $h1-line-height;
-    color: $h1-color;
+
+.signup-page {
+    display: flex;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    background-color: $primary;
+
+    
+        .content-box-signup {
+            background-color: $h1-color;
+            width: 440px;
+            height: 385px;
+            padding: 50px 61px 68px 62px;
+            border-radius: 40px;
+            border: 2px solid none;
+        }
+    
+    .container-form-signup {
+      display: flex;
+      flex-direction: column;
+      padding: 50px;
+
+      input[name="email"], [name="psw"], [name="psw2"] {
+        margin-top: 25px;
+        height: 47px;
+        font-family: $font-roboto;
+        font-size: 24px;
+        padding-left: 20px;
+        border-style: none;
+        border-radius: 9px ;
+      }
+
+      button[type="submit"] {
+        align-self: center;
+        width: 163px;
+        height: 47px;
+        border-style: none;
+        border-radius: 9px;
+        background-color: $primary;
+        margin-top: 25px;
+        font-family: Roboto;
+        font-size: 24px;
+        text-align: center;
+        color: $background-color;
+      }
+    }
+  }
+
+
+  @media (max-width: 620px) {
+    .signup-page {
+      flex-direction: column; 
+      justify-content: flex-end; /* Center content better for smaller screens */
+      padding: 0 20px 20px 20px;
+      padding-bottom: 0;
+      margin-bottom: 0;
+      
+      
+      /* Add padding for better spacing */
+  .button-toggle {
+        display: flex;
+        justify-content: center;
+    }
+  
+      .content-box-signup {
+        width: 90%; /* Make the container flexible for smaller screens */
+        padding: 30px 20px;
+        border-radius: 40px 40px 0 0; /* Reduce padding */
+      }
+  
+      .container-form-signup {
+        padding: 20px; /* Reduce padding */
+        
+        input[name="email"], [name="psw"], [name="psw2"] {
+          height: 40px; /* Reduce input height */
+          font-size: 18px; /* Adjust font size */
+          margin-top: 15px; /* Reduce margin */
+        }
+  
+        button[type="submit"] {
+          width: 130px; /* Adjust button width */
+          height: 40px; /* Reduce button height */
+          font-size: 18px; /* Adjust font size */
+          margin-top: 20px; /* Adjust margin */
+        }
+      }
+    }
   }
   
-  h2 {
-    font-family: $font-poppins;
-    font-size: $h2-font-size;
-    font-weight: $h2-font-weight;
-    line-height: $h2-line-height;
-    color: $h2-color;
-  }
-  
-  body {
+
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
     font-family: $font-roboto;
-    font-size: $body-font-size;
-    font-weight: $body-font-weight;
-    line-height: $body-line-height;
-    color: $body-text-color;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
   }
   
-  small {
-    font-family: $font-roboto;
-    font-size: $small-text-font-size;
-    font-weight: $small-text-font-weight;
-    line-height: $small-text-line-height;
-    color: $small-text-color;
+  a:hover {
+    color: #f0f0f0;
+    text-decoration: underline;
   }
-  
