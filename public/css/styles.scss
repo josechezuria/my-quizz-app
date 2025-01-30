@@ -111,53 +111,278 @@
 
   //INDEX STYLE
 
-  .body-index {
-    background-color: $background-color;
-    .container-welcome {
-        display: flex;
-        justify-content: space-between;
-        margin: 45px 45px 0 45px;
+/* ===== Base Styles ===== */
+.body-index {
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  background: $background-color;
+  font-family: 'Poppins', sans-serif;
+}
 
-        .h1-index {
-            font-family: $font-poppins;
-            font-size: 32px;
-            font-weight: bold;
-            line-height: 1.25;
-            color: $primary;
+.container-welcome {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
 
-                .p-index {
-                    font-family: $font-roboto;
-                    font-size: 16px;
-                    line-height: 1.5;
-                    color: $primary;
-                    margin-top: 0;
-                    font-weight: normal;
-                    font-stretch: normal;
-                }
-        }
-       
-        .img-profile {
-            width: 77px;
-            height: 74px;
-            margin: 0 45px 97px 105px;
-            background-color: #4caf50;
-            border-radius: 100%;
-        }
-    }
-    .ranking-content {
-        display: flex;
-        .ranking-item {
-            width: 177px;
-            height: 78px;
-            border-radius: 9px;
-        }
-        .your {
-            background-color: #4caf50;
-        }
+/* ===== Header Section ===== */
+.h1-index {
+  color: #2c3e50;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 1.3;
+}
 
-        .global {
-            background-color: $secondary;
-        }
-    }
+.p-index {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+  margin-top: 0.75rem;
+  font-weight: 500;
+}
 
+/* ===== Ranking Container ===== */
+.container-ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Ranking Cards */
+.my-ranking,
+.global-ranking {
+  padding: 1.25rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.my-ranking {
+  background: #ffffff;
+  border: 2px solid $primary;
+  color: #2c3e50;
+}
+
+.global-ranking {
+  background: $primary;
+  color: white;
+  text-decoration: none;
+}
+
+.ranking-number {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: $primary;
+}
+
+/* ===== Profile Image ===== */
+.img-profile {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #ecf0f1;
+  margin: 1.5rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Responsive Design ===== */
+@media (min-width: 768px) {
+  .container-welcome {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
   }
+
+  .h1-index {
+    text-align: left;
+    font-size: 2.5rem;
+    flex-basis: 100%;
+  }
+
+  .container-ranking {
+    margin: 0;
+    order: 2;
+    flex: 1;
+    max-width: none;
+  }
+
+  .img-profile {
+    order: 1;
+    margin: 0;
+    width: 160px;
+    height: 160px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .body-index {
+    padding: 3rem 2rem;
+  }
+
+  .h1-index {
+    font-size: 3rem;
+  }
+
+  .p-index {
+    font-size: 1.25rem;
+  }
+
+  .container-ranking {
+    gap: 1.5rem;
+  }
+
+  .my-ranking,
+  .global-ranking {
+    padding: 1.5rem 2rem;
+  }
+
+  .ranking-number {
+    font-size: 2rem;
+  }
+
+  .img-profile {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* ===== Interactive States ===== */
+@media (hover: hover) {
+  .my-ranking:hover,
+  .global-ranking:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .my-ranking:hover {
+    background: #f8fff9;
+  }
+
+  .global-ranking:hover {
+    background: #27ae60;
+  }
+
+}
+
+.my-ranking:active,
+.global-ranking:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+
+
+.container-quizzes {
+  max-width: 1200px;
+  margin: 4rem auto 0;
+  padding: 0 1.5rem;
+}
+
+.content-quizz-box {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Quiz Cards */
+.content-quizz-box a {
+  text-decoration: none;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: #2c3e50;
+}
+
+.content-quizz-box img {
+  width: 100%;
+  height: 180px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  background: #ecf0f1; /* Placeholder color */
+}
+
+.content-quizz-box a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Typography */
+.container-quizzes .h1-index {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.container-quizzes .p-index {
+  color: #7f8c8d;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .content-quizz-box {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .container-quizzes .h1-index {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content-quizz-box {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .content-quizz-box a {
+    padding: 2rem;
+  }
+  
+  .content-quizz-box img {
+    height: 200px;
+  }
+}
+
+/* Mobile Optimization */
+@media (max-width: 480px) {
+  .content-quizz-box {
+    grid-template-columns: 1fr;
+  }
+  
+  .content-quizz-box a {
+    padding: 1.25rem;
+  }
+  
+  .content-quizz-box img {
+    height: 150px;
+  }
+}
+
+/* Match Ranking Card Interactions */
+@media (hover: hover) {
+  .content-quizz-box a:hover {
+    background: #f8fff9;
+  }
+}
+
+.content-quizz-box a:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
