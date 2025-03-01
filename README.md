@@ -8,8 +8,6 @@ Create a scalable, responsive layout adaptable to different devices.
 Integrate and manipulate external data using the Open Trivia Database API for dynamic question sets.
 This project is a testament to my problem-solving skills, attention to detail, and passion for creating functional, user-centric applications. Feel free to explore the code, test the app, and provide feedback!
 
-[Live Demo]: 
-
 [Repository]:
 https://github.com/josechezuria/my-quizz-app
 
