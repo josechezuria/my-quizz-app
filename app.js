@@ -2,8 +2,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import path from "path";
 import { fileURLToPath } from "url";
-
-
+import { router as quizRoutes } from "./routes/quizRoutes.js"
+import session  from "express-session";
 
 // Create __dirname for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -18,32 +18,18 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
+
+app.use(session({
+  secret: "your-secret-key",
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use("/quiz", quizRoutes);
+
 app.get("/", (req, res) => {
     res.render("index");
   });
-
-app.get("/signup", (req, res) => {
-  res.render("signup");
-});
-
-app.get("/signin", (req, res) => {
-  res.render("signin");
-});
-
-app.post("/", (req, res) => {
-    console.log(req.body);
-    res.redirect("/signup");
-  });
-
-app.post("/signup", (req, res) => {
-  console.log(req.body);
-  res.redirect("/index");
-});
-
-app.post("/signin", (req, res) => {
-  console.log(req.body);
-  res.redirect("/index");
-});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

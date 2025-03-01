@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="A fun and interactive quiz game">
+    <title>Quiz Game</title>
+    
+    <!-- Link to your compiled CSS (make sure to adjust the path if needed) -->
+    <link rel="stylesheet" href="/css/styles.css"> <!-- Replace with the correct path if needed -->
+
+    <!-- Optional: Link to a font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Optional: Add a favicon (replace with your own favicon.ico) -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+    <!-- Optional: Meta tags for SEO -->
+    <meta name="author" content="Your Name">
+    <meta name="keywords" content="quiz, game, interactive quiz, learning, fun">
+    <meta name="robots" content="index, follow">
+
+    <!-- You can add more metadata or external links here if needed -->
+
+</head>
+<body class="body-quiz">
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="quiz-container">
+        <p class="progress-text">Question <span class="current-question">1</span> out of <span class="total-questions">10</span></p>
+        <h2 class="question-text"></h2>
+        <ul class="answers-list"></ul>
+        <div class="feedback-container"></div>
+        <button class="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+
+    <script>
+        let questions = <%- JSON.stringify(questions) %>; // Get questions from backend
+        let currentQuestionIndex = 0;
+        let timeLeft = 30; // Time in seconds
+        let timerInterval;
+
+        function startQuiz() {
+            showQuestion();
+            startTimer();
+        }
+
+        function showQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                alert("Quiz Over!");
+                return;
+            }
+
+            updateProgress();
+
+            const questionData = questions[currentQuestionIndex];
+            document.querySelector(".question-text").innerText = questionData.question;
+
+            const answersList = document.querySelector(".answers-list");
+            answersList.innerHTML = ""; // Clear old answers
+
+            let answers = [...questionData.incorrect_answers, questionData.correct_answer];
+            answers.sort(() => Math.random() - 0.5); // Shuffle answers
+
+            answers.forEach(answer => {
+                const li = document.createElement("li");
+                li.classList.add("answer-item");
+                li.innerText = answer;
+                li.onclick = () => checkAnswer(answer, questionData.correct_answer);
+                answersList.appendChild(li);
+            });
+
+            document.querySelector(".next-btn").style.display = "none"; // Hide next button
+            timeLeft = 30; // Reset time
+            updateProgressBar(); // Initial progress bar update
+        }
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                updateProgressBar(); // Update progress bar each second
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    nextQuestion();
+                }
+            }, 1000); // Update every second
+        }
+
+        function updateProgressBar() {
+            const progressBar = document.getElementById("progressBar");
+            const percentage = (timeLeft / 30) * 100; // Calculate percentage of time left
+            progressBar.style.width = `${percentage}%`; // Set width dynamically
+        }
+
+        function checkAnswer(selected, correct) {
+            clearInterval(timerInterval);
+
+            const feedbackContainer = document.querySelector(".feedback-container");
+            feedbackContainer.style.display = "block"; // Make sure it's visible
+
+            if (selected === correct) {
+                feedbackContainer.innerHTML = "<span class='correct'>Correct!</span>";
+            } else {
+                feedbackContainer.innerHTML = `<span class='wrong'>Wrong! The correct answer was: ${correct}</span>`;
+            }
+
+            document.querySelector(".next-btn").style.display = "block"; // Show next button
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < questions.length) {
+                showQuestion();
+                startTimer();
+            } else {
+                // Redirect user to the main menu
+                window.location.href = "/"; // Change this to the actual route of your main menu
+            }
+        }
+
+        function updateProgress() {
+            document.querySelector(".current-question").innerText = currentQuestionIndex + 1; // Convert 0-based index to human-readable
+            document.querySelector(".total-questions").innerText = questions.length; // Keep total questions consistent
+        }
+
+        startQuiz();
+    </script>
+</body>
+</html>
